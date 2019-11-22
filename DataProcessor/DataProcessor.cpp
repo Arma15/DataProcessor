@@ -22,6 +22,8 @@ int main(int argc, char* argv[])
 	string input("input.txt"), output("output.txt");
 	ifstream in;
 	ofstream out;
+	bool valid = false;
+
 	cout << "You entered " << argc - 1 << " arguments." << endl;
 	if (argc < 2)
 	{
@@ -49,6 +51,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
+		valid = true;
 		cout << "Filename: " << input << " has opened successfully." <<endl;
 	}
 
@@ -59,6 +62,18 @@ int main(int argc, char* argv[])
 	else
 	{
 		cout << "Filename: " << output << " has opened successfully." << endl;
+	}
+
+	cin.get();
+	string temp;
+
+	while (getline(in,temp))
+	{
+		string xy;
+		int lastComma = temp.rfind(',');
+		xy = temp.substr(0, lastComma);
+		replace(xy.begin(), xy.end(), ',', ' ');
+		ss << xy;
 	}
 
 	cin.get();
